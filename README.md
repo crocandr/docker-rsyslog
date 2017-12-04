@@ -40,6 +40,14 @@ where is:
   - `192.168.199.87` - the IP of the remote host
   - `5000` - the listen port of the syslog server
 
+... and restart the service
+```
+systemctl restart rsyslog
+```
+or the server with the `reboot` command
+
+That's it. The server's rsyslog sends all log to the remote server too.
+
 ### Docker logs
 
 The easiest solution if you use GlinderLabs's Logspout container.
@@ -53,6 +61,8 @@ docker run -d --name logspout --restart always -v /var/run/docker.sock:/var/run/
 where is:
   - `syslog://192.168.199.87:5000` - the URL and protocol of the remote syslog server
   - other parameter is default or recommended for the logspout container
+
+The logspout container sends all docker logs to the remote server, and you can check the log of the docker containers locally too.
 
 ### Test
 
